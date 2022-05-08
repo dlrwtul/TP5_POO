@@ -2,7 +2,8 @@
     "name": "lutwrld/tp5_poo",
     "autoload": {
         "psr-4": {
-            "Lutwrld\\Tp5Poo\\": "src/"
+            "App\\models\\": "models/",
+            "App\\config\\": "config/"
         }
     },
     "authors": [

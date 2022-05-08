@@ -1,32 +1,25 @@
 <?php 
+
 namespace App\models;
 
-class Inscription {
+class ProfesseurClasse {
     private int $id;
     
-    public function etudiant():Etudiant
+    public function professeur():Professeur
     {
-        return new Etudiant();
-    }
-
-    public function AC():AC
-    {
-        return new AC();
+        return new Professeur;
     }
 
     public function classe():Classe
     {
-        return new Classe();
+        return new Classe;
     }
 
     public function anneeScolaire():AnneeScolaire
     {
-        return new AnneeScolaire();
+        return new AnneeScolaire;
     }
 
-    public function demandes():array {
-        return [];
-    }
     /**
      * Get the value of id
      */ 
