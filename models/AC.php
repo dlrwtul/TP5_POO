@@ -12,4 +12,11 @@ class AC extends User {
     public function inscriptions():array {
         return [];
     }
+
+    public static function findAll():array
+    {
+        $sql = "select * from '".self::getTableName()."' where role like ".Constantes::ROLE_AC;
+        echo $sql;
+        return [];
+    }
 }

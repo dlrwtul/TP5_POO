@@ -1,8 +1,14 @@
 <?php 
 namespace App\models;
-
-class Inscription {
+use App\core\Model;
+class Inscription extends Model {
     private int $id;
+
+    public static function getTableName():string
+    {
+        self::$table = 'inscription';
+        return self::$table;
+    }
     
     public function etudiant():Etudiant
     {

@@ -1,8 +1,15 @@
 <?php
 namespace App\models;
-class Module {
+use App\core\Model;
+class Module extends Model {
     private int $id;
     private string $libelle;
+
+    public static function getTableName():string
+    {
+        self::$table = 'module';
+        return self::$table;
+    }
 
     public function professeurs():array
     {

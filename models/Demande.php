@@ -1,9 +1,16 @@
 <?php
 namespace App\models;
-class Demande {
+use App\core\Model;
+class Demande extends Model{
     private int $id;
     private string $motif;
     private string $etat;
+
+    public static function getTableName():string
+    {
+        self::$table = 'demande';
+        return self::$table;
+    }
 
     public function etudiant():Etudiant
     {

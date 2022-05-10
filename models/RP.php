@@ -13,4 +13,11 @@ class RP extends User {
     public function demandes():array {
         return [];
     }
+
+    public static function findAll():array
+    {
+        $sql = "select * from '".self::getTableName()."' where role like ".Constantes::ROLE_RP;
+        echo $sql;
+        return [];
+    }
 }

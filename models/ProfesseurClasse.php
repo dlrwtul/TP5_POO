@@ -1,8 +1,7 @@
 <?php 
-
 namespace App\models;
-
-class ProfesseurClasse {
+use App\core\Model;
+class ProfesseurClasse extends Model {
     private int $id;
     
     public function professeur():Professeur

@@ -6,5 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Lutwrld\\Tp5Poo\\' => array($baseDir . '/src'),
+    'App\\models\\' => array($baseDir . '/models'),
+    'App\\core\\' => array($baseDir . '/core'),
+    'App\\config\\' => array($baseDir . '/config'),
 );

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\models;
-class User extends Personne {
+use App\config\constantes;
+abstract class User extends Personne {
     protected string $login;
     protected string $password;
     
@@ -43,5 +44,11 @@ class User extends Personne {
         $this->password = $password;
 
         return $this;
+    }
+
+    public static function findAll():array
+    {
+        $sql = "select * from '".self::$table."' where role not like ".constantes::ROLE_PROFESSEUR;
+        return [];
     }
 }

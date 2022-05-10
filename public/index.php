@@ -1,8 +1,9 @@
 <?php
-
 require_once('../vendor/autoload.php');
-use App\Models\User;
+use App\models\Professeur;
 
-$user = new User();
-$user->setId(1);
-echo $user->getId();
+/* $prof = new Professeur;
+$prof->setNomComplet("Lang Diop");
+$prof->setGrade('Bongoman');
+$prof->insert(); */
+Professeur::findAll();

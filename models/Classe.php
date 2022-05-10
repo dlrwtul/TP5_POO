@@ -1,11 +1,18 @@
 <?php 
 namespace App\models;
-class Classe {
+use App\core\Model;
+class Classe extends Model {
     
     private int $id;
     private string $libelle;
     private string $filiere;
     private string $niveau;
+
+    public static function getTableName():string
+    {
+        self::$table = 'classe';
+        return self::$table;
+    }
 
     public function inscriptions():array {
         return [];

@@ -1,12 +1,18 @@
 <?php
 
 namespace App\models;
-class Personne {
+use App\core\Model;
+abstract class Personne extends Model {
+
     protected int $id;
     protected string $nomComplet;
-    protected string $adresse;
-    protected string $sexe;
-    protected string $role;
+    public static string $role;
+
+    public static function getTableName():string
+    {
+        self::$table = 'personne';
+        return self::$table;
+    }
 
 
     /**
@@ -49,45 +55,6 @@ class Personne {
         return $this;
     }
 
-    /**
-     * Get the value of adresse
-     */ 
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * Set the value of adresse
-     *
-     * @return  self
-     */ 
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of sexe
-     */ 
-    public function getSexe()
-    {
-        return $this->sexe;
-    }
-
-    /**
-     * Set the value of sexe
-     *
-     * @return  self
-     */ 
-    public function setSexe($sexe)
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
 
     /**
      * Get the value of role
@@ -107,5 +74,11 @@ class Personne {
         $this->role = $role;
 
         return $this;
+    }
+
+    public static function findAll():array
+    {
+        $sql = "select * from '".self::getTableName();
+        return self::findBy($sql,[]);
     }
 }

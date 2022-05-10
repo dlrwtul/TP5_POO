@@ -1,9 +1,16 @@
 <?php
 namespace App\models;
-class AnneeScolaire {
+use App\core\Model;
+class AnneeScolaire extends Model {
     private int $id;
     private string $libelle;
     private string $enCours;
+
+    public static function getTableName():string
+    {
+        self::$table = 'annee_scolaire';
+        return self::$table;
+    }
 
     public function inscriptions():array {
         return [];
