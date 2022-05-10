@@ -9,8 +9,7 @@ abstract class Model implements IModel {
 
     public static function getTableName():string
     {
-        self::$table = '';
-        return self::$table;
+        return '';
     }
 
 
@@ -23,9 +22,9 @@ abstract class Model implements IModel {
     {
         $DB = new Database();
         $DB->connectDB();
-        $results = $DB->executeUpdate($sql,$datas);
+        $result = $DB->executeUpdate($sql,$datas);
         $DB->disconnectDB();
-        return $results;
+        return $result;
     }
 
     public function update():int
@@ -33,25 +32,25 @@ abstract class Model implements IModel {
         return 0;
     }
 
-    public function delete():int
+    public static function delete(int $id):int
     {
-        $sql = "delete from '".self::getTableName()."'where id = ?";
-        return 0;
+        $sql = "delete from `".self::getTableName()."` where id = ?";
+        return self::prepareUpdate($sql,[$id]);
     }
 
     public static function findAll():array
     {
-        $sql = "select * from '".self::getTableName()."'";
-        return self::findBy($sql,[]);
+        $sql = "select * from `".self::getTableName()."` ";
+        return self::findBy($sql);
     }
 
     public static function findById(int $id):null|object
     {
-        $sql = "select * from '".self::getTableName()."'where id = ?";
-        return self::findBy($sql,[$id]);
+        $sql = "select * from `".self::getTableName()."` where id = ?";
+        return self::findBy($sql,[$id],true);
     }
 
-    public static function findBy(string $sql, array $datas, bool $single = false): null|object|array
+    public static function findBy(string $sql, array $datas=[], bool $single = false): null|object|array
     {
         $DB = new Database();
         $DB->connectDB();

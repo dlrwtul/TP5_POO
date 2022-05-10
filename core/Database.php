@@ -21,13 +21,13 @@ class Database {
         $this->pdo = null;
     }
 
-    public function executeSelect(string $sql,array $datas,bool $single=false):object|array|null
+    public function executeSelect(string $sql,array $datas = [],bool $single=false):object|array|null
     {
         $query = $this->pdo->prepare($sql);
         $query->execute($datas);
         if ($single) {
-            $results = $query->fetch();
-            if ($results::rowCount() == 0) {
+            $results = $query->fetch(PDO::FETCH_OBJ);
+            if (!$results) {
                 return null;
             }
         } else {

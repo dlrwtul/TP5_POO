@@ -46,9 +46,10 @@ abstract class User extends Personne {
         return $this;
     }
 
+
     public static function findAll():array
     {
-        $sql = "select * from '".self::$table."' where role not like ".constantes::ROLE_PROFESSEUR;
+        $sql = "select * from `".self::$table."` where role not like '".constantes::ROLE_PROFESSEUR."'";
         return [];
     }
 }

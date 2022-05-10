@@ -6,4 +6,8 @@ class Constantes {
     public const ROLE_AC = 'ROLE_AC';
     public const ROLE_ETUDIANT = 'ROLE_ETUDIANT';
     public const ROLE_PROFESSEUR = 'ROLE_PROFESSEUR';
+    public static function dd(array $data){
+        var_dump($data);
+        die();
+    }
 }

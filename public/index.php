@@ -1,9 +1,12 @@
 <?php
 require_once('../vendor/autoload.php');
-use App\models\Professeur;
+use App\models\Etudiant;
 
-/* $prof = new Professeur;
+/* $prof = new Etudiant;
 $prof->setNomComplet("Lang Diop");
-$prof->setGrade('Bongoman');
-$prof->insert(); */
-Professeur::findAll();
+$prof->setLogin('Bongoman');
+$prof->setPassword('Bongoman');
+$prof->setSexe("M");
+$prof->setAdresse('malika');
+ */
+//echo Etudiant::delete(16);

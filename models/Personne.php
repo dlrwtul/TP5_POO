@@ -78,7 +78,19 @@ abstract class Personne extends Model {
 
     public static function findAll():array
     {
-        $sql = "select * from '".self::getTableName();
-        return self::findBy($sql,[]);
+        $sql = "SELECT * FROM `".self::getTableName()."`";
+        return self::findBy($sql);
+    }
+
+    public static function delete(int $id):int
+    {
+        $sql = "delete from `".self::getTableName()."` where id = ?";
+        return self::prepareUpdate($sql,[$id]);
+    }
+
+    public static function findById(int $id):null|object
+    {
+        $sql = "select * from `".self::getTableName()."` where id = ?";
+        return self::findBy($sql,[$id],true);
     }
 }

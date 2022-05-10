@@ -48,10 +48,10 @@ class Professeur extends Personne {
         return self::prepareUpdate($sql,[$this->nomComplet,self::$role,$this->grade]);
     }
 
-
     public static function findAll():array
     {
-        $sql = "select * from '".self::getTableName()."' where role like ".constantes::ROLE_PROFESSEUR;
-        return self::findBy($sql,[]);
+        $sql = "select * from `".self::getTableName()."` where role like '".constantes::ROLE_PROFESSEUR."'";
+        return self::findBy($sql);
     }
+
 }

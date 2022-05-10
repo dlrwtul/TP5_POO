@@ -13,10 +13,16 @@ class AC extends User {
         return [];
     }
 
+    public function insert():int
+    {
+        $sql = "INSERT INTO `".self::getTableName()."`( `nom_complet`, `login`, `password`, `role`) VALUES (?,?,?,?)";
+        return self::prepareUpdate($sql,[$this->nomComplet,$this->login,$this->password,self::$role]);
+    }
+
+
     public static function findAll():array
     {
-        $sql = "select * from '".self::getTableName()."' where role like ".Constantes::ROLE_AC;
-        echo $sql;
-        return [];
+        $sql = "select * from `".self::getTableName()."` where role like '".Constantes::ROLE_AC."'";
+        return self::findBy($sql);
     }
 }

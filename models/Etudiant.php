@@ -9,7 +9,7 @@ class Etudiant extends User {
     
     public function __construct()
     {
-        $this->role = Constantes::ROLE_ETUDIANT;
+        self::$role = Constantes::ROLE_ETUDIANT;
     }
 
     public function demandes():array {
@@ -60,10 +60,15 @@ class Etudiant extends User {
         return $this;
     }
 
+    public function insert():int
+    {
+        $sql = "INSERT INTO `".self::getTableName()."`( `nom_complet`, `login`, `password`, `role`, `sexe`,`adresse`) VALUES (?,?,?,?,?,?)";
+        return self::prepareUpdate($sql,[$this->nomComplet,$this->login,$this->password,self::$role,$this->sexe,$this->adresse]);
+    }
+
     public static function findAll():array
     {
-        $sql = "select * from '".self::getTableName()."' where role like ".Constantes::ROLE_ETUDIANT;
-        echo $sql;
-        return [];
+        $sql = "select * from `".self::getTableName()."` where role like '".Constantes::ROLE_ETUDIANT."'";
+        return self::findBy($sql);
     }
 }
