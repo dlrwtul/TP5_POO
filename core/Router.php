@@ -1,12 +1,28 @@
 <?php 
 namespace App\core;
+use App\config\Constantes;
 
 class Router {
-    private static array $routes;
+    private array $routes = [];
+    private Request $request;
 
-    public static function route($uri):array {
-        $uri = explode("\\",$_SERVER['REQUEST_URI']);
-        unset($uri[0]);
-        return array_values($uri);
+    public function __construct()
+    {
+        $this->request = new Request();
+    }
+
+    public function route(string $uri,array $actions) {
+        $this->routes[$uri]=$actions;   
+    }
+
+    public function resolve()
+    {
+        $uri = $this->request->getUri()[0];
+        if (isset($this->routes[$uri])) {
+            Constantes::dd($this->routes[$uri]);
+            return true;
+        } else {
+            throw new NotFoundException();
+        }
     }
 }

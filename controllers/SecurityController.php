@@ -3,15 +3,15 @@ namespace App\controllers;
 
 class SecurityController {
     
-    public function login(){
+    public function connexion(){
 
     }
 
-    public function logout(){
+    public function deconnexion(){
         
     }
 
-    public function signin(){
+    public function inscription(){
 
     }
 }

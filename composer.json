@@ -6,7 +6,8 @@
             "App\\models\\": "models/",
             "App\\config\\": "config/",
             "App\\core\\": "core/",
-            "App\\controllers\\": "controllers/"
+            "App\\controllers\\": "controllers/",
+            "App\\routes\\": "routes/"
         }
     },
     "authors": [

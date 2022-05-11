@@ -3,7 +3,7 @@ namespace App\controllers;
 
 class InscriptionController {
     
-    public function inscrire(){
+    public function inscrireEtudiant(){
         
     }
 }
