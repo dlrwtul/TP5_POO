@@ -1,7 +1,7 @@
 <?php
 namespace App\controllers;
 
-use App\config\Constantes;
+use App\core\Constantes;
 use App\core\Request;
 
 class RequestController {
@@ -20,7 +20,7 @@ class RequestController {
         require_once(Constantes::cheminDossier('templates','user','accueil.html.php'));
     }
 
-    public static function redirect() {
-        //header('location:'.)
+    public static function redirect(string $route = '') {
+        header('location:'.Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR.$route);
     }
 }

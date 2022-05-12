@@ -1,7 +1,5 @@
 <?php
-
 namespace App\core;
-use App\config\constantes;
 
 abstract class Model implements IModel {
 

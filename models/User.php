@@ -1,7 +1,7 @@
 <?php
 
 namespace App\models;
-use App\config\Constantes;
+use App\core\Constantes;
 abstract class User extends Personne {
     protected string $login;
     protected string $password;
@@ -49,7 +49,13 @@ abstract class User extends Personne {
 
     public static function findAll():array
     {
-        $sql = "select * from `".self::$table."` where role not like '".Constantes::ROLE_PROFESSEUR."'";
+        $sql = "select * from `".self::getTableName()."` where role not like '".Constantes::ROLE_PROFESSEUR."'";
         return [];
     }
+
+    public static function findUser(string $login,string $password):object|null {
+        $sql = "select * from `".self::getTableName()."` where login like ?  and password like ?";
+        return self::findBy($sql,[$login,$password],true);
+    }
+
 }

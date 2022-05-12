@@ -1,7 +1,5 @@
 <?php 
 namespace App\core;
-use App\config\Constantes;
-
 class Router {
     private array $routes = [];
     private Request $request;

@@ -2,7 +2,7 @@
 
 namespace App\models;
 
-use App\config\Constantes;
+use App\core\Constantes;
 use App\core\Model;
 abstract class Personne extends Model {
 
@@ -95,4 +95,6 @@ abstract class Personne extends Model {
         $sql = "select * from `".self::getTableName()."` where id = ?";
         return self::findBy($sql,[$id],true);
     }
+
+    
 }

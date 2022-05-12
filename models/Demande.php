@@ -1,7 +1,7 @@
 <?php
 namespace App\models;
 
-use App\config\Constantes;
+use App\core\Constantes;
 use App\core\Model;
 class Demande extends Model{
     private int $id;

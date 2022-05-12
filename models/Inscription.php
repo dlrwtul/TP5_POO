@@ -1,7 +1,7 @@
 <?php 
 namespace App\models;
 
-use App\config\Constantes;
+use App\core\Constantes;
 use App\core\Model;
 class Inscription extends Model {
     private int $id;

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\models;
-use App\config\Constantes;
+use App\core\Constantes;
 class Professeur extends Personne {
 
     private string $grade;

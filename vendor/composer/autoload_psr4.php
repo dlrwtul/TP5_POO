@@ -10,5 +10,4 @@ return array(
     'App\\models\\' => array($baseDir . '/models'),
     'App\\core\\' => array($baseDir . '/core'),
     'App\\controllers\\' => array($baseDir . '/controllers'),
-    'App\\config\\' => array($baseDir . '/config'),
 );

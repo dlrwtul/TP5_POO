@@ -1,6 +1,6 @@
 <?php 
+namespace App\core;
 
-namespace App\config;
 class Constantes {
     public const ROLE_RP = 'ROLE_RP';
     public const ROLE_AC = 'ROLE_AC';
@@ -30,7 +30,7 @@ class Constantes {
         return self::ROOT().$root.DIRECTORY_SEPARATOR.$folder.DIRECTORY_SEPARATOR.$file;
     }
 
-    public static function dd(array $data){
+    public static function dd($data){
         var_dump($data);
         die();
     }
