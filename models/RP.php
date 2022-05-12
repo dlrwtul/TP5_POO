@@ -7,7 +7,7 @@ class RP extends User {
 
     public function __construct()
     {
-        $this->role = Constantes::ROLE_RP;
+        self::$role = Constantes::ROLE_RP;
     }
 
     public function demandes():array {

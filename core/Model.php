@@ -5,7 +5,7 @@ use App\config\constantes;
 
 abstract class Model implements IModel {
 
-    protected static string $table;
+    protected static string $table ;
 
     public static function getTableName():string
     {

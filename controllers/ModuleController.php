@@ -1,7 +1,7 @@
 <?php 
 namespace App\controllers;
 
-class ModuleController {
+class ModuleController extends RequestController {
     
     public function listerModule(){
         

@@ -4,8 +4,10 @@ use App\config\Constantes;
 
 class Etudiant extends User {
 
-    protected string $sexe;
-    protected string $adresse;
+    private string $sexe;
+    private string $adresse;
+    private string $matricule;
+
     
     public function __construct()
     {

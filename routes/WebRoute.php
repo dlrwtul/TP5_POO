@@ -3,6 +3,12 @@
 namespace App\routes;
 use App\core\Router;
 use App\core\NotFoundException;
+use App\controllers\ClasseController;
+use App\controllers\ModuleController;
+use App\controllers\DemandeController;
+use App\controllers\SecurityController;
+use App\controllers\ProfesseurController;
+use App\controllers\InscriptionController;
 
 class WebRoute {
 

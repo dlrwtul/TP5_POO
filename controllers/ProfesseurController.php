@@ -1,7 +1,7 @@
 <?php 
 namespace App\controllers;
 
-class ProfesseurController {
+class ProfesseurController extends RequestController {
     
     public function ajouterProfesseur(){
         

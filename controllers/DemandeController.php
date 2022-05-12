@@ -1,7 +1,7 @@
 <?php 
 namespace App\controllers;
 
-class DemandeController {
+class DemandeController extends RequestController {
     
     public function ajouterDemande(){
         

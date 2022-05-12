@@ -1,6 +1,8 @@
 <?php
 
 namespace App\models;
+
+use App\config\Constantes;
 use App\core\Model;
 abstract class Personne extends Model {
 
@@ -10,7 +12,7 @@ abstract class Personne extends Model {
 
     public static function getTableName():string
     {
-        self::$table = 'personne';
+        self::$table = Constantes::TABLE_PERSONNE;
         return self::$table;
     }
 

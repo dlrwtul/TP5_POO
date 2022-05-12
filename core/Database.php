@@ -1,6 +1,5 @@
 <?php 
 namespace App\core;
-
 use PDO;
 
 class Database {

@@ -1,5 +1,7 @@
 <?php 
 namespace App\models;
+
+use App\config\Constantes;
 use App\core\Model;
 class Classe extends Model {
     
@@ -10,7 +12,7 @@ class Classe extends Model {
 
     public static function getTableName():string
     {
-        self::$table = 'classe';
+        self::$table = Constantes::TABLE_CLASSE;
         return self::$table;
     }
 

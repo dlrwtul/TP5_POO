@@ -1,5 +1,7 @@
 <?php
 namespace App\models;
+
+use App\config\Constantes;
 use App\core\Model;
 class AnneeScolaire extends Model {
     private int $id;
@@ -8,7 +10,7 @@ class AnneeScolaire extends Model {
 
     public static function getTableName():string
     {
-        self::$table = 'annee_scolaire';
+        self::$table = Constantes::TABLE_ANNEE_SCOLAIRE;
         return self::$table;
     }
 

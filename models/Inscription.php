@@ -1,12 +1,14 @@
 <?php 
 namespace App\models;
+
+use App\config\Constantes;
 use App\core\Model;
 class Inscription extends Model {
     private int $id;
 
     public static function getTableName():string
     {
-        self::$table = 'inscription';
+        self::$table = Constantes::TABLE_INSCRIPTION;
         return self::$table;
     }
     

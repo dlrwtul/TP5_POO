@@ -1,6 +1,6 @@
 <?php 
 namespace App\controllers;
 
-class EtudiantController {
+class EtudiantController extends RequestController {
     
 }

@@ -1,5 +1,7 @@
 <?php
 namespace App\models;
+
+use App\config\Constantes;
 use App\core\Model;
 class Demande extends Model{
     private int $id;
@@ -8,7 +10,7 @@ class Demande extends Model{
 
     public static function getTableName():string
     {
-        self::$table = 'demande';
+        self::$table = Constantes::TABLE_DEMANDE;
         return self::$table;
     }
 

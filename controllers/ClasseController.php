@@ -1,7 +1,7 @@
 <?php 
 namespace App\controllers;
 
-class ClasseController {
+class ClasseController extends RequestController {
 
     public function creerClasse(){
         
