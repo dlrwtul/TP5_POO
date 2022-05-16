@@ -27,4 +27,28 @@ class Role {
             return true;
         }
     }
+
+    public static function isConnected() {
+        return isset($_SESSION[Constantes::USER_KEY]);
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
 }

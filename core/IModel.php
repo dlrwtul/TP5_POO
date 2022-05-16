@@ -2,6 +2,7 @@
 namespace App\core;
 
 interface IModel {
+
     public function insert():int;
     public function update():int;
 

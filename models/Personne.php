@@ -9,7 +9,7 @@ abstract class Personne extends Model {
     protected int $id;
     protected string $nomComplet;
     public static string $role;
-
+    
     public static function getTableName():string
     {
         self::$table = Constantes::TABLE_PERSONNE;
@@ -82,6 +82,12 @@ abstract class Personne extends Model {
     {
         $sql = "SELECT * FROM `".self::getTableName()."`";
         return self::findBy($sql);
+    }
+
+    public static function findLang($where,$like):null|object
+    {
+        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
+        return self::findBy($sql,[$like],true);
     }
 
     public static function delete(int $id):int

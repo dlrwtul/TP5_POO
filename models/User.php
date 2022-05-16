@@ -58,4 +58,9 @@ abstract class User extends Personne {
         return self::findBy($sql,[$login,$password],true);
     }
 
+    public static function checkUser(string $login):object|null {
+        $sql = "select * from `".self::getTableName()."` where login like ?";
+        return self::findBy($sql,[$login],true);
+    }
+
 }

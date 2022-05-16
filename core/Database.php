@@ -41,7 +41,7 @@ class Database {
     {
         $query = $this->pdo->prepare($sql);
         $query->execute($datas);
-        return $this->pdo->lastInsertId();
+        return $this->pdo->lastInsertId('id');
     }
 
     /**

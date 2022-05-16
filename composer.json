@@ -17,5 +17,10 @@
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.2"
+    },
+    "require": {
+        "nette/utils": "^3.2",
+        "symfony/validator": "^6.0",
+        "digiaonline/instance-factory": "^1.1"
     }
 }

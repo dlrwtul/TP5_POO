@@ -1,9 +1,11 @@
 <?php
 namespace App\core;
 
+use Digia\InstanceFactory\InstanceFactory;
+
 abstract class Model implements IModel {
 
-    protected static string $table ;
+    protected static string $table = 'table' ;
 
     public static function getTableName():string
     {
@@ -48,6 +50,12 @@ abstract class Model implements IModel {
         return self::findBy($sql,[$id],true);
     }
 
+    public static function findLang($where,$like):null|object
+    {
+        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
+        return self::findBy($sql,[$like],true);
+    }
+
     public static function findBy(string $sql, array $datas=[], bool $single = false): null|object|array
     {
         $DB = new Database();
@@ -55,6 +63,16 @@ abstract class Model implements IModel {
         $results = $DB->executeSelect($sql,$datas,$single);
         $DB->disconnectDB();
         return $results;
+    }
+
+    public static function instancieur($className,$datas) {
+        return InstanceFactory::fromProperties($className,$datas);
+    }
+
+    public static function insertNewObj($datas):int {
+        $object = self::instancieur(self::class,$datas);
+        $lastInsertId = $object->insert();
+        return $lastInsertId;
     }
 
 }

@@ -6,7 +6,7 @@ use App\core\Model;
 class AnneeScolaire extends Model {
     private int $id;
     private string $libelle;
-    private string $enCours;
+    private string $etat;
 
     public static function getTableName():string
     {
@@ -63,24 +63,30 @@ class AnneeScolaire extends Model {
         return $this;
     }
 
-    /**
-     * Get the value of enCours
+     /**
+     * Get the value of etat
      */ 
-    public function getEnCours()
+    public function getEtat()
     {
-        return $this->enCours;
+        return $this->etat;
     }
 
     /**
-     * Set the value of enCours
+     * Set the value of etat
      *
      * @return  self
      */ 
-    public function setEnCours($enCours)
+    public function setEtat($etat)
     {
-        $this->enCours = $enCours;
+        $this->etat = $etat;
 
         return $this;
+    }
+
+    public static function findLang($where,$like):null|object
+    {
+        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
+        return self::findBy($sql,[$like],true);
     }
 
     public static function findAll():array
@@ -100,4 +106,6 @@ class AnneeScolaire extends Model {
         $sql = "select * from `".self::getTableName()."` where id = ?";
         return self::findBy($sql,[$id],true);
     }
+
+   
 }

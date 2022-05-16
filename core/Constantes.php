@@ -2,6 +2,7 @@
 namespace App\core;
 
 class Constantes {
+    public const USER_KEY = 'user';
     public const ROLE_RP = 'ROLE_RP';
     public const ROLE_AC = 'ROLE_AC';
     public const ROLE_ETUDIANT = 'ROLE_ETUDIANT';
@@ -13,6 +14,7 @@ class Constantes {
     public const TABLE_DEMANDE = 'demande';
     public const TABLE_INSCRIPTION = 'inscription';
     public const TABLE_PROFESSEUR_CLASSE = 'professeur_classe';
+    public const TABLE_PROFESSEUR_MODULE = 'professeur_module';
 
     public static function WEBROOT() {
         return str_replace("index.php","",$_SERVER["SCRIPT_NAME"]);

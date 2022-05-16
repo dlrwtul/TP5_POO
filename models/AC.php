@@ -22,7 +22,8 @@ class AC extends User {
 
     public static function findAll():array
     {
-        $sql = "select * from `".self::getTableName()."` where role like '".Constantes::ROLE_AC."'";
+        $sql = "select * from
+         `".self::getTableName()."` where role like '".Constantes::ROLE_AC."'";
         return self::findBy($sql);
     }
 }

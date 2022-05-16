@@ -4,6 +4,7 @@ namespace App\models;
 use App\core\Constantes;
 use App\core\Model;
 class Module extends Model {
+    
     private int $id;
     private string $libelle;
 
@@ -15,7 +16,8 @@ class Module extends Model {
 
     public function professeurs():array
     {
-        return [];
+        $sql = "SELECT p.* FROM ".Constantes::TABLE_PROFESSEUR_MODULE.",".Constantes::TABLE_PERSONNE." p WHERE module_id = ? AND professeur_id = p.id ";
+        return self::findBy($sql,[$this->id]);
     }
 
     /**
@@ -62,6 +64,12 @@ class Module extends Model {
     {
         $sql = "select * from `".self::getTableName()."` ";
         return self::findBy($sql);
+    }
+
+    public static function findLang($where,$like):null|object
+    {
+        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
+        return self::findBy($sql,[$like],true);
     }
 
     public static function delete(int $id):int
