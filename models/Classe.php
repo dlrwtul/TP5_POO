@@ -1,9 +1,10 @@
 <?php 
 namespace App\models;
 
-use App\core\Constantes;
 use App\core\Model;
 use App\core\Session;
+use App\core\Constantes;
+use Nette\Utils\Strings;
 
 class Classe extends Model {
     
@@ -17,12 +18,6 @@ class Classe extends Model {
         $this->libelle = $libelle;
         $this->filiere = $filiere;
         $this->niveau = $niveau;
-    }
-
-    public static function getTableName():string
-    {
-        self::$table = Constantes::TABLE_CLASSE;
-        return self::$table;
     }
 
     public function RP():RP {
@@ -120,37 +115,8 @@ class Classe extends Model {
 
     public function insert():int
     {
-        $sql = "INSERT INTO `".self::getTableName()."`( `libelle`, `niveau`, `filiere`,`rp_id`) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO `".self::table()."`( `libelle`, `niveau`, `filiere`,`rp_id`) VALUES (?,?,?,?)";
         return self::prepareUpdate($sql,[$this->libelle,$this->niveau,$this->filiere,$_SESSION[Constantes::USER_KEY]->id]);
     }
 
-    public static function insertNewObj($datas):int {
-        $object = self::instancieur(self::class,$datas);
-        $lastInsertId = $object->insert();
-        return $lastInsertId;
-    }
-
-    public static function findAll():array
-    {
-        $sql = "select * from `".self::getTableName()."` ";
-        return self::findBy($sql);
-    }
-
-    public static function findLang($where,$like):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
-        return self::findBy($sql,[$like],true);
-    }
-
-    public static function delete(int $id):int
-    {
-        $sql = "delete from `".self::getTableName()."` where id = ?";
-        return self::prepareUpdate($sql,[$id]);
-    }
-
-    public static function findById(int $id):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where id = ?";
-        return self::findBy($sql,[$id],true);
-    }
 }

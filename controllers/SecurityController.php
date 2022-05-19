@@ -10,25 +10,34 @@ use Nette\Utils\Validators;
 class SecurityController extends RequestController {
     
     public function connexion(){
+
         if ($this->request->isGet()) {
             self::render('accueil.html.php','securite','login.html.php');
         }
 
         if ($this->request->isPost()) {
-            if (Validators::isEmail($_POST['login'])) {
+
+            if (Validators::isEmail($_POST['login']) && !empty($_POST['password'])) {
+
                 $result = User::findUser($_POST['login'],$_POST['password']);
+                
                 if ($result == NULL) {
+
                     $this->session->setSession('errorLogin','Login ou password incorrect.');
                     self::redirect('login');
+
                 } else {
+
                     $this->session->setSession(Constantes::USER_KEY,$result);
+                    
                     if (Role::isConnected()) {
-                        self::render('accueil.user.html.php','user','first.view.html.php');
+                        self::redirect('home');
                     } else {
                         $exception = new NotFoundException();
                         die($exception->message);
                     }
                 }
+
             }else {
                 $this->session->setSession('errorLogin','Login invalid.');
                 self::redirect('login');
@@ -46,7 +55,7 @@ class SecurityController extends RequestController {
         }
     }
 
-    public function inscription(){
+    /* public function inscription(){
         if ($this->request->isGet()) {
             self::render('accueil.html.php','securite','signin.html.php');
         }
@@ -57,11 +66,15 @@ class SecurityController extends RequestController {
                 $this->session->setSession('errorSignin','Login deja existant !');
                 self::redirect('signin');
             } else {
-                //il reste le matricule
-                //$newEtudiant = Etudiant::newUser($_POST);
                 $this->session->setSession('succesSignin','Inscription reussie !');
                 self::redirect('signin');
             }
+        }
+    } */
+
+    public function home() {
+        if ($this->request->isGet()) {
+            self::render('accueil.user.html.php','user','first.view.html.php');
         }
     }
 }

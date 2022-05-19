@@ -16,13 +16,13 @@ class RP extends User {
 
     public function insert():int
     {
-        $sql = "INSERT INTO `".self::getTableName()."`( `nom_complet`, `login`, `password`, `role`) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO `".self::table()."`( `nom_complet`, `login`, `password`, `role`) VALUES (?,?,?,?)";
         return self::prepareUpdate($sql,[$this->nomComplet,$this->login,$this->password,self::$role]);
     }
 
     public static function findAll():array
     {
-        $sql = "select * from `".self::getTableName()."` where role like '".Constantes::ROLE_RP."'";
+        $sql = "select * from `".self::table()."` where role like '".Constantes::ROLE_RP."'";
         return self::findBy($sql);
     }
 }

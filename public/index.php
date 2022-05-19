@@ -1,4 +1,8 @@
 <?php
+
+use App\core\Constantes;
+use LDAP\Connection;
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

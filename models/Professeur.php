@@ -6,7 +6,7 @@ class Professeur extends Personne {
 
     private string $grade;
 
-    public function __construct(?string $nomComplet = null, ?string $grade= null) 
+    public function __construct(?string $nomComplet = '', ?string $grade= '') 
     {
         $this->nomComplet = $nomComplet;
         $this->grade = $grade;
@@ -49,22 +49,18 @@ class Professeur extends Personne {
         return $this;
     }
 
-    public static function insertNewObj($datas):int {
-        $object = self::instancieur(self::class,$datas);
-        $lastInsertId = $object->insert();
-        return $lastInsertId;
-    }
-
     public function insert():int
     {
-        $sql = "INSERT INTO `".self::getTableName()."`( `nom_complet`, `role`, `grade`) VALUES (?,?,?)";
+        $sql = "INSERT INTO `".self::table()."`( `nom_complet`, `role`, `grade`) VALUES (?,?,?)";
         return self::prepareUpdate($sql,[$this->nomComplet,self::$role,$this->grade]);
     }
 
     public static function findAll():array
     {
-        $sql = "select * from `".self::getTableName()."` where role like '".constantes::ROLE_PROFESSEUR."'";
-        return self::findBy($sql);
+        $className = get_called_class();
+        $array = explode("\\", $className);
+        $last = end($array);
+        $sql = "select * from `".self::table()."` where role like ?";
+        return self::findBy($sql,[Constantes::ROLE_PROFESSEUR]);
     }
-
 }

@@ -18,4 +18,14 @@ class Request {
     {
         return $_SERVER['REQUEST_METHOD'] == "POST";
     }
+
+    public function getPost()
+    {
+        return $_POST;
+    }
+
+    public function getGet()
+    {
+        return $_GET;
+    }
 }

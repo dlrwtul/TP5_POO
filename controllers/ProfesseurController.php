@@ -11,7 +11,9 @@ class ProfesseurController extends RequestController {
     
     public function ajouterProfesseur(){
         if ($this->request->isGet()) {
-            self::render('accueil.user.html.php','user','ajouter.professeur.html.php');
+            $classes = Classe::findAll();
+            $modules = Module::findAll();
+            self::render('accueil.user.html.php','user'.DIRECTORY_SEPARATOR.'professeur','ajouter.professeur.html.php',array($classes,$modules));
         }
 
         if ($this->request->isPost()) {
@@ -53,7 +55,8 @@ class ProfesseurController extends RequestController {
 
     public function listerProfesseur(){
         if ($this->request->isGet()) {
-            self::render('accueil.user.html.php','user','lister.professeur.html.php');
+            $professeurs = Professeur::findAll();
+            self::render('accueil.user.html.php','user'.DIRECTORY_SEPARATOR.'professeur','lister.professeur.html.php',$professeurs);
         }
     }
 
@@ -62,6 +65,13 @@ class ProfesseurController extends RequestController {
     }
 
     public function listerClasseProfesseur(){
-        
+        if ($this->request->isPost()) {
+            $id = $_POST['data'][0];
+            $professeur = new Professeur();
+            $professeur->setId($id);
+            $classes = $professeur->classes();
+            $modules = $professeur->modules();
+            self::render('accueil.user.html.php','user'.DIRECTORY_SEPARATOR.'professeur','details.professeur.html.php',array($_POST['data'],$classes,$modules));
+        }
     }
 }

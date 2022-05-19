@@ -1,17 +1,20 @@
 <?php
 namespace App\models;
 
-use App\core\Constantes;
 use App\core\Model;
+use App\core\Constantes;
+use Nette\Utils\Strings;
+
 class Demande extends Model{
     private int $id;
+    private string $objet;
     private string $motif;
     private string $etat;
 
-    public static function getTableName():string
+    public function __construct(?string $objet = null,?string $motif = null)
     {
-        self::$table = Constantes::TABLE_DEMANDE;
-        return self::$table;
+        $this->objet = $objet;
+        $this->motif = $motif;
     }
 
     public function etudiant():Etudiant
@@ -87,21 +90,32 @@ class Demande extends Model{
         return $this;
     }
 
-    public static function findAll():array
+        /**
+     * Get the value of objet
+     */ 
+    public function getObjet()
     {
-        $sql = "select * from `".self::getTableName()."` ";
-        return self::findBy($sql);
+        return $this->objet;
     }
 
-    public static function delete(int $id):int
+    /**
+     * Set the value of objet
+     *
+     * @return  self
+     */ 
+    public function setObjet($objet)
     {
-        $sql = "delete from `".self::getTableName()."` where id = ?";
-        return self::prepareUpdate($sql,[$id]);
+        $this->objet = $objet;
+
+        return $this;
     }
 
-    public static function findById(int $id):null|object
+    public function insert():int
     {
-        $sql = "select * from `".self::getTableName()."` where id = ?";
-        return self::findBy($sql,[$id],true);
+        $datec = new \DateTime('now');
+        $date= $datec->format("d-m-y");
+        $sql = "INSERT INTO `".self::table()."`(`objet`, `motif`, `date`, `etat`,`inscription_id`,`etudiant_id`,`rp_id`) VALUES (?,?,?,?,?,?,?)";
+        return self::prepareUpdate($sql,[$this->objet,$this->motif,$date,'en attente',$_SESSION['inscription_id'],$_SESSION[Constantes::USER_KEY]->id,null]);
     }
+
 }

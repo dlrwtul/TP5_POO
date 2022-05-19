@@ -1,9 +1,12 @@
 <?php 
 namespace App\models;
 
-use App\core\Constantes;
 use App\core\Model;
+use App\core\Constantes;
+use Nette\Utils\Strings;
+
 class Inscription extends Model {
+
     private int $id;
     private string $etat;
 
@@ -12,12 +15,7 @@ class Inscription extends Model {
         $this->etat = "en cours";
     }
 
-    public static function getTableName():string
-    {
-        self::$table = Constantes::TABLE_INSCRIPTION;
-        return self::$table;
-    }
-    
+
     public function etudiant(?int $id = null):Etudiant
     {
         if ($id != null) {
@@ -88,7 +86,7 @@ class Inscription extends Model {
     public function insert():int
     {
         $anneeScolaire = AnneeScolaire::findLang('etat','en cours');
-        $sql = "INSERT INTO `".self::getTableName()."`( `etat`, `etudiant_id`, `classe_id`, `ac_id`,`annee_scolaire_id`) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO `".self::table()."`( `etat`, `etudiant_id`, `classe_id`, `ac_id`,`annee_scolaire_id`) VALUES (?,?,?,?,?)";
         return self::prepareUpdate($sql,[$this->etat,$_SESSION['etudiant_id'],$_SESSION['classe_id'],$_SESSION[Constantes::USER_KEY]->id,$anneeScolaire->id]);
     }
 
@@ -102,24 +100,6 @@ class Inscription extends Model {
 
         $inscription = new Inscription();
         return $inscription->insert();
-    }
-
-    public static function findAll():array
-    {
-        $sql = "select * from `".self::getTableName()."` ";
-        return self::findBy($sql);
-    }
-
-    public static function delete(int $id):int
-    {
-        $sql = "delete from `".self::getTableName()."` where id = ?";
-        return self::prepareUpdate($sql,[$id]);
-    }
-
-    public static function findById(int $id):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where id = ?";
-        return self::findBy($sql,[$id],true);
     }
 
 }

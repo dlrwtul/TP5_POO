@@ -15,6 +15,7 @@ class Constantes {
     public const TABLE_INSCRIPTION = 'inscription';
     public const TABLE_PROFESSEUR_CLASSE = 'professeur_classe';
     public const TABLE_PROFESSEUR_MODULE = 'professeur_module';
+    
 
     public static function WEBROOT() {
         return str_replace("index.php","",$_SERVER["SCRIPT_NAME"]);
@@ -35,5 +36,15 @@ class Constantes {
     public static function dd($data){
         var_dump($data);
         die();
+    }
+
+    public static function createFormInputHidden($data,$route,$chaine = "Details") {
+
+        echo '<form action="'.Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR.$route.'" method="post">';
+            foreach ($data as $value) {
+                echo '<input type="hidden" name="data[]" value=" '.$value.'">';
+            }
+            echo '<input  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" type="submit" value="'.$chaine.'">';
+        echo '</form>';
     }
 }

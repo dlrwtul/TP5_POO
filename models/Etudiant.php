@@ -8,24 +8,13 @@ class Etudiant extends User {
     private string $adresse;
     private string $matricule;
 
-    
-    public function __construct(?string $nomComplet=null,?string $login=null,?string $password =null, ?string $sexe= null,?string $adresse= null,?string $matricule = null)
-    {
-        $this->nomComplet = $nomComplet;
-        $this->login = $login;
-        $this->password = $password;
-        $this->sexe = $sexe;
-        $this->adresse = $adresse;
-        $this->matricule = $matricule;
-        self::$role = Constantes::ROLE_ETUDIANT;
-    }
-
     public function demandes():array {
         return [];
     }
 
     public function inscriptions():array {
-        return [];
+        $sql = "SELECT i.* FROM ".Constantes::TABLE_INSCRIPTION." i,".self::table()." e WHERE etudiant_id = ? AND etudiant_id = e.id ";
+        return self::findBy($sql,[$this->id]);
     }
 
     /**
@@ -103,19 +92,13 @@ class Etudiant extends User {
 
     public function insert():int
     {
-        $sql = "INSERT INTO `".self::getTableName()."`( `nom_complet`, `login`, `password`, `role`,`matricule`, `sexe`,`adresse`) VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO `".self::table()."`( `nom_complet`, `login`, `password`, `role`,`matricule`, `sexe`,`adresse`) VALUES (?,?,?,?,?,?,?)";
         return self::prepareUpdate($sql,[$this->nomComplet,$this->login,$this->password,self::$role,$this->matricule,$this->sexe,$this->adresse]);
-    }
-
-    public static function insertNewObj($datas):int {
-        $object = self::instancieur(self::class,$datas);
-        $lastInsertId = $object->insert();
-        return $lastInsertId;
     }
 
     public static function findAll():array
     {
-        $sql = "select * from `".self::getTableName()."` where role like '".Constantes::ROLE_ETUDIANT."'";
+        $sql = "select * from `".self::table()."` where role like '".Constantes::ROLE_ETUDIANT."'";
         return self::findBy($sql);
     }
 

@@ -4,8 +4,8 @@ namespace App\core;
 interface IModel {
 
     public function insert():int;
-    public function update():int;
-
+    
+    public static function update($attribute,$value,int $id):int;
     public static function getTableName():string;
     public static function delete(int $id):int;
     public static function findAll():array;

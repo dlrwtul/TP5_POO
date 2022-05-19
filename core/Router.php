@@ -1,5 +1,8 @@
 <?php 
 namespace App\core;
+
+use App\controllers\SecurityController;
+
 class Router {
     private array $routes = [];
     private Request $request;
@@ -28,6 +31,7 @@ class Router {
                 throw new NotFoundException();
             }
         } else {
+            SecurityController::render('accueil.html.php','securite','login.html.php');
             throw new NotFoundException();
         }
     }

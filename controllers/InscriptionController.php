@@ -10,7 +10,8 @@ class InscriptionController extends RequestController {
     
     public function inscrireEtudiant(){
         if ($this->request->isGet()) {
-            self::render('accueil.user.html.php','user','inscrire.etudiant.html.php');
+            $classes = Classe::findAll();
+            self::render('accueil.user.html.php','user'.DIRECTORY_SEPARATOR.'inscription','inscrire.etudiant.html.php',$classes);
         }
 
         if ($this->request->isPost()) {
@@ -20,10 +21,20 @@ class InscriptionController extends RequestController {
                 $this->session->setSession('succesInscription','Inscription Reussie .');
                 self::redirect('inscrire-etudiant');
             } else {
-            $this->session->setSession('errorInscription','Error Inscription .');
+                $this->session->setSession('errorInscription','Error Inscription .');
                 self::redirect('inscrire-etudiant');
             }
 
+        }
+    }
+
+    public function listerInscription() {
+        if ($this->request->isGet()) {
+            $etudiant = new Etudiant();
+            $data = $this->session->getSession(Constantes::USER_KEY);
+            $etudiant->setId($data->id);
+            $inscriptions = $etudiant->inscriptions();
+            self::render('accueil.user.html.php','user'.DIRECTORY_SEPARATOR.'inscription','lister.inscription.html.php',$inscriptions);
         }
     }
 }

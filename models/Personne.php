@@ -2,21 +2,16 @@
 
 namespace App\models;
 
-use App\core\Constantes;
 use App\core\Model;
+use App\core\Constantes;
+use Nette\Utils\Strings;
+
 abstract class Personne extends Model {
 
     protected int $id;
     protected string $nomComplet;
     public static string $role;
-    
-    public static function getTableName():string
-    {
-        self::$table = Constantes::TABLE_PERSONNE;
-        return self::$table;
-    }
-
-
+  
     /**
      * Get the value of id
      */ 
@@ -78,29 +73,6 @@ abstract class Personne extends Model {
         return $this;
     }
 
-    public static function findAll():array
-    {
-        $sql = "SELECT * FROM `".self::getTableName()."`";
-        return self::findBy($sql);
-    }
-
-    public static function findLang($where,$like):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
-        return self::findBy($sql,[$like],true);
-    }
-
-    public static function delete(int $id):int
-    {
-        $sql = "delete from `".self::getTableName()."` where id = ?";
-        return self::prepareUpdate($sql,[$id]);
-    }
-
-    public static function findById(int $id):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where id = ?";
-        return self::findBy($sql,[$id],true);
-    }
-
+    
     
 }

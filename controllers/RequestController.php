@@ -18,8 +18,9 @@ class RequestController {
         $this->session = new Session();
     }
 
-    public static function render($accueil,$folder,$file){
+    public static function render($accueil,$folder,$file,$data = []){
         ob_start();
+        $data;
         require_once(Constantes::cheminDossier('templates',$folder,$file));
         self::$content_for_view = ob_get_clean();
         require_once(Constantes::cheminDossier('templates','user',$accueil));

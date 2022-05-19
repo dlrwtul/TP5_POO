@@ -21,6 +21,7 @@
     "require": {
         "nette/utils": "^3.2",
         "symfony/validator": "^6.0",
-        "digiaonline/instance-factory": "^1.1"
+        "digiaonline/instance-factory": "^1.1",
+        "sebastian/object-reflector": "^2.0"
     }
 }

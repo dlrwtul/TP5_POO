@@ -1,18 +1,15 @@
 <?php
 namespace App\models;
 
-use App\core\Constantes;
 use App\core\Model;
+use App\core\Constantes;
+use Nette\Utils\Strings;
+
 class AnneeScolaire extends Model {
+
     private int $id;
     private string $libelle;
     private string $etat;
-
-    public static function getTableName():string
-    {
-        self::$table = Constantes::TABLE_ANNEE_SCOLAIRE;
-        return self::$table;
-    }
 
     public function inscriptions():array {
         return [];
@@ -81,30 +78,6 @@ class AnneeScolaire extends Model {
         $this->etat = $etat;
 
         return $this;
-    }
-
-    public static function findLang($where,$like):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where ".$where." = ?";
-        return self::findBy($sql,[$like],true);
-    }
-
-    public static function findAll():array
-    {
-        $sql = "select * from `".self::getTableName()."` ";
-        return self::findBy($sql);
-    }
-
-    public static function delete(int $id):int
-    {
-        $sql = "delete from `".self::getTableName()."` where id = ?";
-        return self::prepareUpdate($sql,[$id]);
-    }
-
-    public static function findById(int $id):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where id = ?";
-        return self::findBy($sql,[$id],true);
     }
 
    

@@ -61,12 +61,12 @@ $textRole = explode('_', $role);
 
     <?php if($role == Constantes::ROLE_AC){ ?>
       <div class="accordion-item w-full">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
             Gestion Etudiants
           </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show w-full" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapseFour" class="accordion-collapse collapse w-full" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
           <div class="accordion-body  w-full">
             <strong>Inscrire etudiant:</strong> Inscrire ou reinscrire un etudiant . <br>
             <strong>Lister etudiants:</strong> lister touts les etudiants. <br>
@@ -74,12 +74,12 @@ $textRole = explode('_', $role);
         </div>
       </div>
       <div class="accordion-item w-full">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
             Gestion demandes
           </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show w-full" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapseFive" class="accordion-collapse collapse w-full" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
           <div class="accordion-body  w-full">
             <strong>Lister demandes</strong>
           </div>
@@ -89,12 +89,12 @@ $textRole = explode('_', $role);
 
     <?php if($role == Constantes::ROLE_ETUDIANT){ ?>
       <div class="accordion-item w-full">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <h2 class="accordion-header" id="headingSix">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
             Gestion demandes
           </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show w-full" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapseSix" class="accordion-collapse collapse w-full" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
           <div class="accordion-body  w-full">
             <strong>Ajouter demande</strong>
             <strong>Lister demandes</strong>

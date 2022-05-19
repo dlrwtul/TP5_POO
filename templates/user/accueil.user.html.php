@@ -1,15 +1,7 @@
 <?php
 use App\core\Constantes;
 require_once(Constantes::cheminDossier('templates','include','header.html.php'));
-use App\core\Role;
-use App\controllers\RequestController;
-
-$controller = new RequestController();
-$user = $controller->session->getSession(Constantes::USER_KEY);
-$classeRole = new Role($user->role);
-$role = $classeRole->getRole();
-$textRole = explode('_', $role);
-
+$role = $_SESSION[Constantes::USER_KEY]->role;
 ?>
 <body id="body-pd" class="body-pd overflow-hidden">
     <header class="header body-pd" id="header">
@@ -18,7 +10,8 @@ $textRole = explode('_', $role);
     </header>
     <div class="l-navbar rounded-md show" id="nav-bar">
         <nav class="nav bg-gray-800 ">
-            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Gestin Inscription</span> </a>
+            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i><span class="nav_logo-name">Gestin Inscription</span> </a>
+                <a href="<?php echo Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR."home" ?>" class="nav_link"> <i class='bx bx-home-alt-2 nav_icon'></i> <span class="nav_name">Home</span> </a> 
                 <ul class="nav_list"> 
                 <?php if($role == Constantes::ROLE_RP){ ?>
                     <li>
@@ -60,19 +53,40 @@ $textRole = explode('_', $role);
                 <?php } ?>
                 <?php if($role == Constantes::ROLE_AC){ ?>
                     <li>
-                        <button type="button" class="" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example3">
+                        <button type="button" class="" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example4">
                             <a href="#" class="nav_link"> <i class='bx bx-message-square-add nav_icon' ></i> <span class="nav_name">Inscription</span> </a> 
                         </button>
-                        <ul id="dropdown-example3" class="hidden py-2 space-y-2">
+                        <ul id="dropdown-example4" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="<?php echo Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR."inscrire-etudiant" ?>" class="nav_link"><span class="nav_name">Inscrire etudiant</span> </a>
                             </li>
                         </ul>
                     </li>
-                    <a href="#" class="nav_link"> <i class='bx bxs-user-pin nav_icon' ></i> <span class="nav_name">Etudiant</span> </a> 
+                    <!-- <a href="#" class="nav_link"> <i class='bx bxs-user-pin nav_icon' ></i> <span class="nav_name">Etudiant</span> </a>  -->
                 <?php } ?>
-                    <a href="#" class="nav_link"> <i class='bx bx-text nav_icon'></i></i> <span class="nav_name">Demandes</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> 
+                <?php if($role == Constantes::ROLE_ETUDIANT){ ?>
+                    <li>
+                        <button type="button" class="" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example5">
+                            <a href="#" class="nav_link"> <i class='bx bx-message-square-add nav_icon' ></i> <span class="nav_name">Inscription</span> </a> 
+                        </button>
+                        <ul id="dropdown-example5" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="<?php echo Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR."lister-inscription" ?>" class="nav_link"><span class="nav_name">Lister Inscription</span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <a href="#" class="nav_link"> <i class='bx bxs-user-pin nav_icon' ></i> <span class="nav_name">Etudiant</span> </a>  -->
+                <?php } ?>
+                    <li>
+                        <button type="button" class="" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example3">
+                            <a href="#" class="nav_link"> <i class='bx bx-text nav_icon'></i></i> <span class="nav_name">Demandes</span> </a> 
+                        </button>
+                        <ul id="dropdown-example3" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="<?php echo Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR."lister-demande" ?>" class="nav_link"><span class="nav_name">Lister demandes</span> </a>
+                                </li>                            
+                        </ul>
+                    </li>
                 </div>
             </ul>
             <a href="<?php echo Constantes::WEBROOT()."index.php".DIRECTORY_SEPARATOR.'logout' ?>" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Deconnexion</span> </a>

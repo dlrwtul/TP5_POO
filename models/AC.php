@@ -15,7 +15,7 @@ class AC extends User {
 
     public function insert():int
     {
-        $sql = "INSERT INTO `".self::getTableName()."`( `nom_complet`, `login`, `password`, `role`) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO `".self::table()."`( `nom_complet`, `login`, `password`, `role`) VALUES (?,?,?,?)";
         return self::prepareUpdate($sql,[$this->nomComplet,$this->login,$this->password,self::$role]);
     }
 
@@ -23,7 +23,7 @@ class AC extends User {
     public static function findAll():array
     {
         $sql = "select * from
-         `".self::getTableName()."` where role like '".Constantes::ROLE_AC."'";
+         `".self::table()."` where role like '".Constantes::ROLE_AC."'";
         return self::findBy($sql);
     }
 }

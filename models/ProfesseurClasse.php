@@ -1,9 +1,11 @@
 <?php 
 namespace App\models;
 use App\core\Model;
+use Nette\Utils\Strings;
+
 class ProfesseurClasse extends Model {
     private int $id;
-    
+
     public function professeur():Professeur
     {
         return new Professeur;
@@ -39,21 +41,5 @@ class ProfesseurClasse extends Model {
         return $this;
     }
 
-    public static function findAll():array
-    {
-        $sql = "select * from `".self::getTableName()."` ";
-        return self::findBy($sql);
-    }
-
-    public static function delete(int $id):int
-    {
-        $sql = "delete from `".self::getTableName()."` where id = ?";
-        return self::prepareUpdate($sql,[$id]);
-    }
-
-    public static function findById(int $id):null|object
-    {
-        $sql = "select * from `".self::getTableName()."` where id = ?";
-        return self::findBy($sql,[$id],true);
-    }
+    
 }

@@ -46,20 +46,13 @@ abstract class User extends Personne {
         return $this;
     }
 
-
-    public static function findAll():array
-    {
-        $sql = "select * from `".self::getTableName()."` where role not like '".Constantes::ROLE_PROFESSEUR."'";
-        return [];
-    }
-
     public static function findUser(string $login,string $password):object|null {
-        $sql = "select * from `".self::getTableName()."` where login like ?  and password like ?";
+        $sql = "select * from `".self::table()."` where login like ?  and password like ?";
         return self::findBy($sql,[$login,$password],true);
     }
 
     public static function checkUser(string $login):object|null {
-        $sql = "select * from `".self::getTableName()."` where login like ?";
+        $sql = "select * from `".self::table()."` where login like ?";
         return self::findBy($sql,[$login],true);
     }
 
